@@ -1,0 +1,37 @@
+﻿/*
+    Create DRY placeholders here and reference with @extend %placeholder.
+
+    These are better than extending pre-existing classes as these are not 
+    emitted into the compiled css, only into the classes they are extended into.
+
+*/
+
+/* <Examples> */
+
+%button {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+%flexBackground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+%workItem {
+    content: '';
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 10px;
+}
+
+/* </Examples> */

@@ -1,0 +1,25 @@
+﻿/*
+    Mixins with arguments.
+    Don't create any mixins in this file that don't contain arguments, instead use placeholders.
+
+    './_placeholders.scss'
+
+    Reference mixin with @include
+
+*/
+@mixin rounded($arc) {
+    @if ($arc) {
+        -moz-border-radius: $arc;
+        -webkit-border-radius: $arc;
+        border-radius: $arc;
+    }
+    @else {
+        @error 'Property #{$arc} was not passed to rounded mixin.';
+    }
+}
+
+@mixin rounded2($arc: 15px) {
+    -moz-border-radius: $arc;
+    -webkit-border-radius: $arc;
+    border-radius: $arc;
+}

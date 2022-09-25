@@ -1,0 +1,5 @@
+@use "abstracts/variables/colours" as colour;
+
+.text-white {
+    color: colour.$white;
+}
