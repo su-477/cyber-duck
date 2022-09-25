@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>suraj</title>
+    <link rel="icon" href="../favicon.ico">
+
+    <link rel="stylesheet" href="../assets/main.css" />
+</head>
+<body style="cursor: default;">
+
+    <div class="debugPane" style="display: block; background: white;" id="open">
+
+        <h3>suraj</h3>
+
+
+        <div class="newItem">
+            <h5>Type</h5>
+            <input class="newItem__radio" checked type="radio" name="type" value="bug" />Bug<br>
+            <h5>Title</h5>
+            <textarea class="newItem__text" id="issueTitle" cols="100"></textarea>
+            <h5>Description/Repro Steps</h5>
+            <textarea class="newItem__text" id="issueDescription" cols="100"></textarea>
+            <h5>Assign to user</h5>
+            <select class="newItem__dropdown" id="issueAssignedTo"></select>
+            <br><br>
+            <button class="newItem__button" id="issueSubmit">Save Work Item</button>
+        </div>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script>
+
+        let opn = window.opener;
+        
+        let $el = $("#issueAssignedTo");
+        $el.html("");
+
+        if (opn.moduleController.clientMode === true) {        
+            $el.append('<option data-userid="#">Development</option>');
+        } else {
+            $el.append("<option selected disabled default>Select User</option")
+            for (let i = 0; i < opn.devOps.team.length; i++) {
+                let user = opn.devOps.team[i];
+                $el.append("<option data-userid='"+user.id+"' value='" + user.displayName + " <" + user.uniqueName + ">'>" + user.displayName + "</option>");
+            }
+        }
+
+
+        
+    // Button to create new work item.
+    $("body").on('click', '#issueSubmit', function () {
+        let type = $(".newItem__radio[name=type]:checked").val();
+        let title = $("#issueTitle").val();
+        let desc = $("#issueDescription").val();
+        let assigned = $("#issueAssignedTo").val();
+        if (type === undefined) {
+            alert("Please select a Work Item type.");
+            return false;
+        }
+        if (title === '') {
+            alert("Please enter a Work Item title.");
+            return false;
+        }
+        if (desc === '') {
+            alert("Please enter a Work Item description.");
+            return false;
+        }
+        if (assigned === null) {
+            alert("Please assign a user to this Work Item.");
+            return false;
+        }
+
+        let system = navigator.appName + " | " + navigator.appVersion + " | " + opn.innerWidth + " x " + opn.innerHeight;
+
+
+        // Send to DevOps
+        let image = null;
+        if (opn.testController.sendscreenshot === true) {
+            //capture screenshot
+
+            // JavaScript element for screenshot
+            var node = opn.document.querySelector('#main');
+            
+            // Scrolling element
+            var scrollTop = opn.$("html").scrollTop();
+                        
+            // Screenshot cannot capture scroll position, emulate this with -margin-top
+            opn.$("#stage").css("margin-top", "-" + scrollTop + "px");
+
+            // Screenshot options
+            var options = {
+                quality: opn.testController.screenshotQuality,
+                width: opn.innerWidth,
+                height: opn.innerHeight
+            }
+            let img = null
+            opn.domtoimage.toJpeg(node, options)
+                .then(function (dataUrl) {
+
+                    // Reset margin
+                    opn.$("#stage").css("margin-top", "0px");
+
+                    // Set scroll position if changed during screenshot
+                    opn.$("html").scrollTop(scrollTop);
+                    
+                    image = dataUrl;
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    
+                    // Reset margin
+                    opn.$("#stage").css("margin-top", "0px");
+
+                    // Set scroll position if changed during screenshot
+                    opn.$("html").scrollTop(scrollTop);
+
+                    image = null;
+                });
+        }
+        if (opn.moduleController.clientMode === true) {
+            desc = '<p>' + opn.dataController.getData("loginUsername") + '</p><p>'+ opn.pages[opn.navigationController.activePage].title + '</p>' + desc;
+        }
+        setTimeout(function () {
+            // Send to DevOps API
+            opn.devOps.createWorkItem(image, type, title, assigned, desc, system);
+
+            // Close this popup
+            window.close();
+        }, 2500);
+    });
+
+
+    </script>
+
+</body>
+</html>

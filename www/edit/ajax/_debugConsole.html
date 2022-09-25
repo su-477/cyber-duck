@@ -1,0 +1,153 @@
+﻿<div class="debugConsole__inner">
+    
+    <div class="close-debug"></div>
+    <div id="debugButtonBar">
+        
+        <div id="btnNoteList" class="debugBtn" alt="debugNoteList"><img src="assets/img/pm/notes.svg" /><p>Notes</div>
+        <div id="btnPageList" class="debugBtn" alt="debugPageList"><img src="assets/img/pm/pages.svg" /><p>Pages</div>
+        <div id="btnLocationHistory" class="debugBtn" alt="debugLocationHistory"><img src="assets/img/pm/history.svg" /><p>History</div>
+        <div id="btnConsoleSubmitProblem" class="debugBtn" alt="debugConsoleSubmitProblem"><img src="assets/img/pm/devops.svg" /><p>New Work Item</div>
+        <div id="btnWorkItems" class="debugBtn" alt="debugWorkItems"><img src="assets/img/pm/devops.svg" /><p>DevOps Work Items</div>
+        <div id="btnConsoleText" class="debugBtn" alt="debugConsoleText"><img src="assets/img/pm/notes.svg" /><p>Update Content</div>
+        <div id="btnConsoleTools" class="debugBtn" alt="debugTools"><img src="assets/img/pm/settings.svg" /><p>Settings</div>
+    </div>
+</div>
+<div id="debugConsoleLogWindow">
+    
+    <div class="close-debugwindow"></div>
+    <div id="debugNoteList" class="debugPane"></div>
+    <div id="debugPageList" class="debugPane">
+        
+        <h4>Pages</h4>
+            
+        <table>
+                
+            <thead>
+                <tr>                    
+                    <td style="width: 5%;">ID</td>
+                    <td style="width: 25%;">Title</td>
+                    <td style="width: 60%;">URL</td>
+                    <td style="width: 10%;"></td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <div id="debugLocationHistory" class="debugPane">
+        
+        <h4>Page History</h4>
+        <table>
+            
+            <thead>
+                <tr>
+                    
+                    <td style="width: 5%;">Time</td>
+                    <td style="width: 25%;">Title</td>
+                    <td style="width: 60%;">URL</td>
+                    <td style="width: 10%;"></td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="debugConsoleSubmitProblem" class="debugPane">
+        
+        <h4>New Work Item</h4><br><br>
+        <div class="newItem">
+            
+            <h4>Type</h4>
+            <input class="newItem__radio" checked type="radio" name="type" value="bug" />Bug<br>
+            <h4>Title</h4>
+            <textarea class="newItem__text" id="issueTitle" cols="100"></textarea>
+            <h4>Description/Repro Steps</h4>
+            <textarea class="newItem__text" id="issueDescription" cols="100"></textarea>
+            <h4>Assign to user</h4>
+            <select class="newItem__dropdown" id="issueAssignedTo"></select>
+            <br><br>
+            <button class="newItem__button" id="issueSubmit">Save Work Item</button>
+        </div>
+        
+    </div>
+    <div id="debugWorkItems" class="debugPane">
+        
+        <h4>DevOps WorkItems</h4>
+        <h5>Filters</h5>
+        <div class="workItemsOptions">
+            
+            <div>                
+                <p>Work Item States:</p>
+                <div class="workItemsOptions__row"><input onclick="devOps.filter(this)" class="workItemsOptions__filter" type="checkbox" data-toggleView="workitemstate" value="Done">Show Done</div>
+            </div>
+
+        </div>
+        <table>
+            
+            <thead><tr><td>ID</td><td>Title</td><td>Assigned To</td><td>State</td><td>Board Column</td><td></td></tr></thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+    <div id="debugConsoleText" class="debugPane">
+        
+        <h4>Update Content</h4>
+        <table>
+            
+            <thead>                
+                <tr>                    
+                    <td style="width:2%"></td>
+                    <td style="width:8%">ID</td>
+                    <td style="width:82%">Content</td>
+                    <td style="width:10%"></td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                
+            </tfoot>
+        </table>
+    </div>
+    <div id="debugTools" class="debugPane">
+        
+        <h4>PurpleMedia EditSuite Settings</h4>
+        <table>
+            
+            <tbody id="moduleFunctions">
+                
+                <tr class="tableSubHeader"><td colspan="2">Report Settings:</td></tr>
+                <tr>
+                    
+                    <td style="width:50%;">Send Console Log</td>
+                    <td style="width:50%;"><div class="dButton don"><input type="checkbox" checked class="settings-checkbox" onchange="testController.toggleConsoleLog();" /></div></td>
+                </tr>
+                <tr>
+                    
+                    <td style="width:50%;">Screenshots</td>
+                    <td style="width:50%;"><div class="dButton don"><input type="checkbox" checked class="settings-checkbox" onchange="testController.toggleScreenshotting();" /></div></td>
+                </tr>
+                <tr>
+                    
+                    <td style="width:50%;">Send HTML</td>
+                    <td style="width:50%;"><div class="dButton doff"><input type="checkbox" class="settings-checkbox" onchange="testController.toggleHTML();" /></div></td>
+                </tr>
+                <tr>
+                    
+                    <td style="width:50%;">Send Device Info</td>
+                    <td style="width:50%;"><div class="dButton don"><input type="checkbox" checked class="settings-checkbox" onchange="testController.toggleDeviceInfo();" /></div></td>
+                </tr>
+                <tr>
+                    
+                    <td style="width:50%;">Send Source</td>
+                    <td style="width:50%;"><div class="dButton don"><input type="checkbox" checked class="settings-checkbox" onchange="testController.toggleSource();" /></div></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <h4>Project Team</h4>
+        <table>
+            
+            <tbody id="projectTeam"></tbody>
+        </table>
+    </div>
+</div>
