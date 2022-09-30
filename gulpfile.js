@@ -1,4 +1,4 @@
-﻿const gulp = require('gulp'),
+const gulp = require('gulp'),
     sass = require('gulp-sass')(require('sass')),
     concat = require('gulp-concat'),
     minjs = require('gulp-minify'),
@@ -11,13 +11,13 @@
 gulp.task('scripts', function () {
     return gulp.src([
         "scripts/vendor/cos.js",
-
+        
         // Global settings
         "scripts/settings.js",
-
+        
         // Module text for all languages
         "scripts/languages/*.js",
-
+        
         // Vendors
         "scripts/vendor/dialReqs.js",
         "scripts/vendor/jquery.min.js",
@@ -40,7 +40,7 @@ gulp.task('scripts', function () {
         // Content, this runs as an initialiser.
         "scripts/content.js"
 
-    ], { base: 'src' })
+    ], { base: 'src' })        
         .pipe(sourcemaps.init())
         .pipe(concat('scripts.js'))
         .pipe(sourcemaps.write())
