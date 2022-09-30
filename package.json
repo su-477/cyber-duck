@@ -1,7 +1,7 @@
 {
-  "name": "suraj",
-  "version": "0.9.19",
-  "description": "A simple responsive mini framework to kick start your project.",
+  "name": "project-template",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node setup.js",
@@ -10,27 +10,8 @@
     "watch:sass": "gulp watch:sass",
     "watch:scripts": "gulp watch:scripts"
   },
-  "author": "Suraj",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Cyber-Duck/hoisin.scss"
-  },
-  "keywords": [
-    "sass",
-    "scss",
-    "responsive",
-    "framework",
-    "grid"
-  ],
-  "bugs": {
-    "url": "https://github.com/Cyber-Duck/hoisin.scss/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "hhttps://raw.github.com/Cyber-Duck/hoisin.scss/master/LICENSE.txt"
-    }
-  ],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "bootstrap": "^5.0.0-beta3",
     "dart-sass": "^1.25.0",
@@ -46,5 +27,7 @@
     "replace-in-file": "^6.2.0",
     "sass": "^1.49.8",
     "uuid": "^8.3.2"
+  },
+  "dependencies": {
   }
 }
