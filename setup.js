@@ -16,17 +16,25 @@ const properties = [
     //     warning: 'ProjectID must be a valid UUID'
     // },
     {
-        name: 'Project',
-        description: '',
+        name: 'ProjectNumber',
+        description: 'Enter the project number',
         validator: /^[0-9\s\-]+$/,
-        warning: 'Project name required '
+        warning: 'Project Number must only contain numbers'
     },
+    {
+        name: 'Client',
+        description: 'Enter the client name',
+    },
+    {
+        name: 'Module',
+        description: 'Enter the module name',
+    }
 ];
 
 function r(options) {
     try {
         let changedFiles = replace.sync(options);
-    } catch (e) { }
+    } catch (e) {}
 }
 
 prompt.start();
@@ -43,7 +51,7 @@ prompt.get(properties, function (err, result) {
             to: result[properties[i].name]
         }
 
-        r(options);
+        r(options);        
     }
 
     const id = uuid.v4();
@@ -67,5 +75,5 @@ function onErr(err) {
 
 const settings = {
     "ProjectID": "%ProjectID%",
+    "ProjectNo": "%ProjectNumber%",
 }
-
