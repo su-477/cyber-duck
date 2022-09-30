@@ -1,0 +1,38 @@
+.graph {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &__col {
+        &--small {
+            width: 50%;
+        }
+
+        &--large {
+            width: 70%;
+        }
+        &--left {
+            width: 50%;
+        }
+        &--right {
+            width: 58.4%;
+            overflow: visible;
+        }
+    }
+
+    &__key {
+        text-align: left;
+        width: 20%;
+
+        & svg {
+            width: 80px;
+            overflow: visible;
+        }
+    }
+}
+
+.feedback-money {
+    font-family: 'Delivery-Bold', 'Delivery Bold';
+    position: relative;
+    left: 110%;
+}

@@ -1,0 +1,355 @@
+@use "../abstracts/variables/breakpoints" as bp;
+@use '../abstracts/variables/colours' as colour;
+
+$tinderSize: 200px;
+$tinderSizeD: 300px;
+
+.tinder {
+    width: 800px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+
+    &__complete {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        width: 500px;
+        max-width: 80%;
+        background-color: rgb(242,242,242);
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+        transition: all .25s ease-out;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    &__stack {
+        height: $tinderSize;
+        width: $tinderSize;
+
+        @media (min-width: bp.$tablet-portrait) {
+            height: $tinderSizeD;
+            width: $tinderSizeD;
+        }
+
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    &__item {
+        position: absolute;
+        height: $tinderSize;
+        width: $tinderSize;
+
+        @media (min-width: bp.$tablet-portrait) {
+            height: $tinderSizeD;
+            width: $tinderSizeD;
+        }
+
+        flex-shrink: 0;
+        top: 0;
+        left: 0;
+        background-color: colour.$tertiary;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        cursor: pointer;
+        //text-transform: uppercase;
+        font-size: 20px;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(.5);
+        color: white;
+        transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+
+        &.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        &.dummy {
+            opacity: 1;
+            position: relative;
+            transform: scale(1);
+            width: 180px;
+            height: 180px;
+            margin: auto;
+
+            @media (min-width: bp.$tablet-portrait) {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        &.left {
+            transform: translateX(-100%) rotateZ(-15deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        &.right {
+            transform: translateX(100%) rotateZ(15deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &__fb {
+        display: none;
+
+        &.active {
+            display: inline;
+        }
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        height: 100px;
+        width: 40px;
+
+        @media (min-width: bp.$tablet-portrait) {
+            width: 80px;
+            height: 160px;
+        }
+    }
+
+    &:before {
+        background-image: url(img/tinder/time.svg);
+        lefT: 0;
+        
+    }
+
+    &:after {
+        background-image: url(img/tinder/focus.svg);
+        right: 0;
+    }
+
+    &__feedback {
+        @extend .tinder__item;
+        background-size: 60px 40px;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        &.fade-in {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        &--correct {
+            background-image: url(img/keeping/tick.svg);
+        }
+
+        &--incorrect {
+            background-image: url(img/keeping/cross.svg);
+        }
+    }
+
+&__item-tick {
+    fill:none;
+    stroke: #7ac142;
+    stroke-linecap:round;
+    stroke-miterlimit:10;
+    stroke-width:8px;
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+&__item-svg {
+    width: 50%;
+}
+&__item-wrongtick {
+    fill:none;
+    stroke: #ff0000;
+    stroke-linecap:round;
+    stroke-miterlimit:10;
+    stroke-width:8px;
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+&__item-svg {
+    width: 50%;
+}
+}
+
+.bubbles {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.bubble {
+    height: 180px;
+    width: 180px;
+    border-radius: 1000px;
+    background-color: colour.$tertiary;
+    margin: 0 20px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    @media (min-width: bp.$tablet-landscape) {
+        height: 180px;
+        width: 180px;
+    }
+}
+
+.tinder-left {
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        height: 100px;
+        width: 40px;
+        background-image: url(img/tinder/time.svg);
+        left: 0;
+
+        @media (min-width: bp.$tablet-portrait) {
+            width: 80px;
+            height: 160px;
+        }
+    }
+}
+
+.tinder-right {
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center center;
+        height: 100px;
+        width: 40px;
+        background-image: url(img/tinder/focus.svg);
+        right: 0;
+
+        @media (min-width: bp.$tablet-portrait) {
+            width: 80px;
+            height: 160px;
+        }
+    }
+}
+
+.heartbeat {
+	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2022-8-19 9:54:5
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation heartbeat
+ * ----------------------------------------
+ */
+ @-webkit-keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
+  @keyframes heartbeat {
+    from {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: center center;
+              transform-origin: center center;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    10% {
+      -webkit-transform: scale(0.91);
+              transform: scale(0.91);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    17% {
+      -webkit-transform: scale(0.98);
+              transform: scale(0.98);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    33% {
+      -webkit-transform: scale(0.87);
+              transform: scale(0.87);
+      -webkit-animation-timing-function: ease-in;
+              animation-timing-function: ease-in;
+    }
+    45% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+  }
+  

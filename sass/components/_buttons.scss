@@ -1,0 +1,59 @@
+@use '../abstracts/variables/colours' as colour;
+
+button {
+    outline: none;
+    border: none;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: colour.$secondary;
+}
+
+@keyframes scrollBob {
+    0% {
+        background-position: 50% 40%;
+    }
+
+    100% {
+        background-position: 50% 60%;
+    }
+}
+
+.scroll-button {
+    background-position: 50% 40%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-image: url(img/arrow-down.png);
+    width: 70px;
+    height: 40px;
+    margin-block-start: 40px;
+    animation: scrollBob .3s alternate infinite;
+}
+
+.submit {
+    padding: 20px 30px;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    width: 300px;
+    color: white;
+    transition: all .25s ease-out;
+
+    &.left-auto {
+        margin-inline-start: auto;
+    }
+
+    &--grey {
+        background-color: colour.$shade4;
+    }
+
+    &.inactive {
+        background-color: #ccc;
+        pointer-events: none;
+    }
+}
+
+.overGraphButton {
+    background-color: colour.$tertiary;
+    position: relative;
+    left: 100px;
+}
