@@ -14,4 +14,4 @@ terminal (gulp watch:scripts)
 
 terminal (gulp dev)
 
-npm i http-server
+npm run server
